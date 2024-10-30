@@ -18,15 +18,19 @@ final class FeedViewModel: ObservableObject {
     private let source: RssSource
 
     init(settings: Settings, feed: Feed, onNavigation: @escaping (FeedView.NavigationTarget) -> Void) {
+        print("FeedViewModel init")
         guard let source = settings.get() else {
             fatalError()
         }
-
         self.onNavigation = onNavigation
         self.feed = feed
         self.source = source
     }
-
+    
+    deinit {
+        print("FeedViewModel deinit")
+    }
+    
     func load() async {
         do {
             let items = try await feed.get(source)
