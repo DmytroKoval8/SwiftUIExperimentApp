@@ -16,10 +16,15 @@ final class AboutViewModel: ObservableObject {
     private let onNavigation: (AboutView.NavigationTarget) -> Void
 
     init(onNavigation: @escaping (AboutView.NavigationTarget) -> Void) {
+        print("AboutViewModel init")
         self.onNavigation = onNavigation
 
         appName = Bundle.main.appName
         appVersion = "\(Bundle.main.appVersion) (\(Bundle.main.appBuild))"
+    }
+    
+    deinit {
+        print("AboutViewModel deinit")
     }
 
     func showLibraries() {

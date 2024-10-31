@@ -19,7 +19,7 @@ public struct Feed {
 
 extension Feed {
     public static var live: Self = Feed(get: { source in
-        Logger.feed.debug("Fetching RSS Feed from \(source.rss)")
+//        Logger.feed.debug("Fetching RSS Feed from \(source.rss)")
 
         let parser = FeedParser(URL: source.rss)
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[RssItem], Error>) in
@@ -27,21 +27,21 @@ extension Feed {
                 switch result {
                 case let .success(feed):
                     if let rssItems = feed.rssFeed?.items?.compactMap({ RssItem(item: $0) }) {
-                        Logger.feed.debug("Got \(rssItems.count) RSS items")
+//                        Logger.feed.debug("Got \(rssItems.count) RSS items")
                         continuation.resume(returning: rssItems)
                         return
                     }
 
                     if let atomItems = feed.atomFeed?.entries?.compactMap({ RssItem(item: $0) }) {
-                        Logger.feed.debug("Got \(atomItems.count) Atom items")
+//                        Logger.feed.debug("Got \(atomItems.count) Atom items")
                         continuation.resume(returning: atomItems)
                         return
                     }
 
-                    Logger.feed.error("RSS Feed return no items")
+//                    Logger.feed.error("RSS Feed return no items")
                     continuation.resume(throwing: FeedError.emptyFeed)
                 case let .failure(error):
-                    Logger.feed.error("Fetching RSS Feed failed [error: \(error.localizedDescription)]")
+//                    Logger.feed.error("Fetching RSS Feed failed [error: \(error.localizedDescription)]")
                     continuation.resume(throwing: error)
                 }
             }

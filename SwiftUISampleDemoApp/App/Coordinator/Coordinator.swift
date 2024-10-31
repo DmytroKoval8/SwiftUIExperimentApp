@@ -37,27 +37,27 @@ final class Coordinator: ObservableObject {
     }
 
     private func showFeed() {
-        Logger.appFlow.debug("Showing feed")
+//        Logger.appFlow.debug("Showing feed")
         push(screen: .feed)
     }
 
     private func showDetail(item: RssItem) {
-        Logger.appFlow.debug("Showing item detail [title: \(item.title)]")
+//        Logger.appFlow.debug("Showing item detail [title: \(item.title)]")
         push(screen: .item(item))
     }
 
     private func showAbout() {
-        Logger.appFlow.debug("Showing about")
+//        Logger.appFlow.debug("Showing about")
         push(screen: .about)
     }
 
     private func showLibraries() {
-        Logger.appFlow.debug("Showing used libraries")
+//        Logger.appFlow.debug("Showing used libraries")
         push(screen: .libraries)
     }
 
     private func showSettings() {
-        Logger.appFlow.debug("Showing settings")
+//        Logger.appFlow.debug("Showing settings")
         pop()
     }
 

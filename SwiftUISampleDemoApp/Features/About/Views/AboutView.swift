@@ -14,10 +14,10 @@ public struct AboutView: View {
         case libraries
     }
 
-    @ObservedObject private var viewModel: AboutViewModel
+    @StateObject private var viewModel: AboutViewModel
 
     public init(onNavigation: @escaping (NavigationTarget) -> Void) {
-        viewModel = AboutViewModel(onNavigation: onNavigation)
+        _viewModel = StateObject(wrappedValue: AboutViewModel(onNavigation: onNavigation))
     }
 
     public var body: some View {

@@ -19,6 +19,7 @@ final class SetupViewModel: ObservableObject {
     private let onFinished: () -> Void
 
     init(settings: Settings, onFinished: @escaping () -> Void) {
+        print("SetupViewModel init")
         self.settings = settings
         self.selected = settings.get()
         self.onFinished = onFinished
@@ -34,6 +35,10 @@ final class SetupViewModel: ObservableObject {
         } catch {
             fatalError()
         }
+    }
+    
+    deinit {
+        print("SetupViewModel deinit")
     }
 
     func select(source: RssSource) {

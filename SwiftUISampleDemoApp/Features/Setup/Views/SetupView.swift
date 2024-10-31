@@ -10,13 +10,13 @@ import Foundation
 import SwiftUI
 
 public struct SetupView: View {
-    @ObservedObject private var viewModel: SetupViewModel
+    @StateObject private var viewModel: SetupViewModel
 
     public init(settings: Settings, onFinished: @escaping () -> Void) {
-        viewModel = SetupViewModel(
+        _viewModel = StateObject(wrappedValue: SetupViewModel(
             settings: settings,
             onFinished: onFinished
-        )
+        ))
     }
 
     public var body: some View {

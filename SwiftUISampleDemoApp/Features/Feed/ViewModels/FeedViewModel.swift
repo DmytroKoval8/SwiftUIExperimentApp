@@ -34,7 +34,9 @@ final class FeedViewModel: ObservableObject {
     func load() async {
         do {
             let items = try await feed.get(source)
-            state = .loaded(data: items)
+            await MainActor.run {
+                state = .loaded(data: items)
+            }
         } catch {
             state.toError(error: error)
         }

@@ -11,6 +11,7 @@ final class LibraryViewModel {
     let libraries: [Library]
 
     init() {
+        print("LibraryViewModel init")
         guard let path = Bundle.main.path(forResource: "Licenses", ofType: "plist"),
                 let array = NSArray(contentsOfFile: path) as? [[String: Any]]
         else {
@@ -23,5 +24,9 @@ final class LibraryViewModel {
             }
             return Library(title: title, license: license)
         }
+    }
+    
+    deinit {
+        print("LibraryViewmodel deinit")
     }
 }

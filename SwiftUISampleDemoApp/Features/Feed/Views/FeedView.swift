@@ -16,18 +16,18 @@ public struct FeedView: View {
         case settings
     }
 
-    @ObservedObject private var viewModel: FeedViewModel
+    @StateObject private var viewModel: FeedViewModel
 
     public init(
         settings: Settings,
         feed: Feed,
         onNavigation: @escaping (NavigationTarget) -> Void
     ) {
-        viewModel = FeedViewModel(
+        _viewModel = StateObject(wrappedValue: FeedViewModel(
             settings: settings,
             feed: feed,
             onNavigation: onNavigation
-        )
+        ))
     }
 
     public var body: some View {
